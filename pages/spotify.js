@@ -3,7 +3,7 @@ import axios from "axios";
 
 function App() {
   const CLIENT_ID = "ea86301d3ebe48559a512fce57194689";
-  const REDIRECT_URI = "http://localhost:3000/spotify";
+  const REDIRECT_URI = "https://spotify-playlists-alpha.vercel.app/spotify";
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
   const RESPONSE_TYPE = "token";
 
@@ -36,7 +36,6 @@ function App() {
   const [playlists, setPlaylists] = useState([]);
 
   const searchPlaylists = async (e) => {
-    console.log("searchPlaylists");
     e.preventDefault();
 
     const { data } = await axios.get(
@@ -49,15 +48,10 @@ function App() {
         },
       }
     );
-    console.log(data.tracks.total);
-
     setPlaylists(data.tracks.items);
   };
 
   const renderPlaylists = () => {
-    console.log("renderPlaylists");
-    console.log("renderPlaylists ");
-
     return playlists.map((playlists, i) => (
       <tr key={playlists.track.id}>
         <td>
